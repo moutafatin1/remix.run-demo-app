@@ -7,7 +7,7 @@ type ExpenseItemProps = {
 
 export const ExpenseItem = ({ amount, title }: ExpenseItemProps) => {
   return (
-    <li className="w-full flex items-center justify-between bg-gray-500 rounded-xl p-4">
+    <li className="flex w-full items-center justify-between rounded-xl bg-gray-500 p-4">
       <span className="flex flex-col text-white">
         <span className="text-2xl font-bold ">{title}</span>
         <span className="font-semibold">${amount}</span>
