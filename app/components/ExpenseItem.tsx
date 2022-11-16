@@ -2,7 +2,7 @@ import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 type ExpenseItemProps = {
   title: string;
-  amount: number;
+  amount: string;
 };
 
 export const ExpenseItem = ({ amount, title }: ExpenseItemProps) => {
