@@ -21,7 +21,7 @@ export const InputField = ({
   ...props
 }: InputFieldProps) => {
   return (
-    <label className="space-y-1">
+    <label className="w-full space-y-1">
       {label && (
         <span className="text-sm font-medium capitalize text-gray-700">
           {label} {required && "*"}
@@ -60,7 +60,11 @@ export const InputField = ({
         )}
       </div>
       {errorMessage && (
-        <p id={`${name}-error`} className="mt-2 text-sm text-red-600">
+        <p
+          id={`${name}-error`}
+          role="alert"
+          className="mt-2 text-sm text-red-600"
+        >
           {errorMessage}
         </p>
       )}

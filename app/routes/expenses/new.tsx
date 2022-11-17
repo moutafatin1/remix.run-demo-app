@@ -44,11 +44,15 @@ const AddNewExpensePage = () => {
   const titleError = data?.errors?.fieldErrors.title;
   const amountError = data?.errors?.fieldErrors.amount;
   return (
-    <Form method="post" className="flex flex-col items-center gap-4">
+    <Form
+      method="post"
+      className="mx-auto flex max-w-xs flex-col items-center gap-4"
+    >
       <InputField
         name="title"
         placeholder="title"
         label="title"
+        defaultValue={data?.fields.title}
         errorMessage={titleError}
         required
       />
@@ -57,6 +61,7 @@ const AddNewExpensePage = () => {
         placeholder="amount"
         label="amount"
         type="number"
+        defaultValue={data?.fields.amount}
         errorMessage={amountError}
         required
       />
