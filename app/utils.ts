@@ -1,3 +1,6 @@
+import type { ClassValue } from "clsx";
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 import type { z } from "zod";
 
 export const validateForm = async <T>(
@@ -19,4 +22,8 @@ export const validateForm = async <T>(
     fields,
     errors: undefined,
   };
+};
+
+export const fn = (...classes: ClassValue[]) => {
+  return twMerge(clsx(classes));
 };

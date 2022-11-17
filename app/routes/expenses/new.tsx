@@ -2,11 +2,12 @@ import type { ActionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
 import { z } from "zod";
+import { InputField } from "~/components/Forms";
 import { addNewExpense } from "~/models/expense.server";
 import { validateForm } from "~/utils";
 
 const ExpenseSchema = z.object({
-  title: z.string().min(1, "The title is required"),
+  title: z.string().min(5, "The title must be at least 5 character"),
   amount: z.string().min(1, "The amount is required"),
 });
 
@@ -44,28 +45,21 @@ const AddNewExpensePage = () => {
   const amountError = data?.errors?.fieldErrors.amount;
   return (
     <Form method="post" className="flex flex-col items-center gap-4">
-      <label className="flex flex-col gap-1">
-        <span>Title</span>
-        <input
-          name="title"
-          type="text"
-          placeholder="Expense Title"
-          className="rounded-full"
-          defaultValue={data?.fields.title}
-        />
-      </label>
-      {titleError && <p className="text-sm text-red-500">{titleError}</p>}
-      <label className="flex flex-col gap-1">
-        <span>Amount</span>
-        <input
-          name="amount"
-          type="number"
-          placeholder="Expense Title"
-          className="rounded-full"
-          defaultValue={data?.fields.amount ?? 0}
-        />
-      </label>
-      {amountError && <p className="text-sm text-red-500">{amountError}</p>}
+      <InputField
+        name="title"
+        placeholder="title"
+        label="title"
+        errorMessage={titleError}
+        required
+      />
+      <InputField
+        name="amount"
+        placeholder="amount"
+        label="amount"
+        type="number"
+        errorMessage={amountError}
+        required
+      />
 
       <button className="rounded-full bg-gray-500 px-6 py-3 font-semibold text-white">
         Save Expense

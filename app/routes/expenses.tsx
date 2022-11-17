@@ -2,14 +2,14 @@ import { Link, Outlet } from "@remix-run/react";
 
 const ExpensesPage = () => {
   return (
-    <main className="h-screen bg-gray-300 items-center flex flex-col">
+    <main className=" flex flex-col items-center bg-gray-300">
       <div className="mt-32 flex items-center gap-4">
-        <Link to="." className="px-6 py-2 rounded-full bg-gray-600 text-white">
+        <Link to="." className="rounded-full bg-gray-600 px-6 py-2 text-white">
           Expenses
         </Link>
         <Link
           to="new"
-          className="px-6 py-2 rounded-full bg-gray-600 text-white"
+          className="rounded-full bg-gray-600 px-6 py-2 text-white"
         >
           Add Expense
         </Link>
