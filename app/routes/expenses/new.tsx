@@ -1,7 +1,13 @@
 import type { ActionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form, useActionData } from "@remix-run/react";
+import {
+  Form,
+  useActionData,
+  useTransition as useNavigation,
+} from "@remix-run/react";
+import { AiOutlineSubnode } from "react-icons/ai";
 import { z } from "zod";
+import Button from "~/components/Elements/Button/Button";
 import { InputField } from "~/components/Forms";
 import { addNewExpense } from "~/models/expense.server";
 import { validateForm } from "~/utils";
@@ -36,13 +42,17 @@ export async function action({ request }: ActionArgs) {
     amount: parseFloat(fields.amount),
   });
 
+  await new Promise((res) => setTimeout(res, 2000));
+
   return redirect("/expenses");
 }
 
 const AddNewExpensePage = () => {
   const data = useActionData<ActionData>();
+  const navigation = useNavigation();
   const titleError = data?.errors?.fieldErrors.title;
   const amountError = data?.errors?.fieldErrors.amount;
+  const isSubmitting = navigation.state === "submitting";
   return (
     <Form
       method="post"
@@ -66,9 +76,9 @@ const AddNewExpensePage = () => {
         required
       />
 
-      <button className="rounded-full bg-gray-500 px-6 py-3 font-semibold text-white">
+      <Button isLoading={isSubmitting} endIcon={<AiOutlineSubnode />}>
         Save Expense
-      </button>
+      </Button>
     </Form>
   );
 };
