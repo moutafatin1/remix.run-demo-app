@@ -1,23 +1,46 @@
 import type { ButtonHTMLAttributes } from "react";
 import React from "react";
+import { fn } from "~/utils";
 import { Spinner } from "../Spinner";
+
+const variants = {
+  primary: "bg-violet-500 text-white",
+  danger: "bg-red-500 text-white",
+  outline: "bg-transparent border text-violet-500 border-violet-500",
+};
+
+const sizes = {
+  sm: "py-2 px-4 text-sm",
+  md: "py-2 px-6 text-md",
+  lg: "py-3 px-8 text-lg",
+};
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   isLoading?: boolean;
+  size?: keyof typeof sizes;
+  variant?: keyof typeof variants;
 };
 
 const Button = ({
   children,
+  className,
   isLoading,
   startIcon,
   endIcon,
+  size = "md",
+  variant = "primary",
   ...props
 }: ButtonProps) => {
   return (
     <button
-      className="flex items-center  rounded-md bg-indigo-500 px-6 py-2 font-medium text-white transition-all"
+      className={fn(
+        "flex items-center rounded-md font-medium transition-all hover:opacity-80",
+        sizes[size],
+        variants[variant],
+        className
+      )}
       {...props}
     >
       {isLoading && <Spinner className="animate-spin text-3xl" />}

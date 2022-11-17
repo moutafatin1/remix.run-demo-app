@@ -5,7 +5,7 @@ import {
   useActionData,
   useTransition as useNavigation,
 } from "@remix-run/react";
-import { AiOutlineSubnode } from "react-icons/ai";
+import { AiOutlinePlus } from "react-icons/ai";
 import { z } from "zod";
 import Button from "~/components/Elements/Button/Button";
 import { InputField } from "~/components/Forms";
@@ -76,7 +76,12 @@ const AddNewExpensePage = () => {
         required
       />
 
-      <Button isLoading={isSubmitting} endIcon={<AiOutlineSubnode />}>
+      <Button
+        className="rounded-full"
+        variant="outline"
+        isLoading={isSubmitting}
+        startIcon={<AiOutlinePlus />}
+      >
         Save Expense
       </Button>
     </Form>
