@@ -10,7 +10,7 @@ import { z } from "zod";
 import Button from "~/components/Elements/Button/Button";
 import { InputField } from "~/components/Forms";
 import { addNewExpense } from "~/models/expense.server";
-import { validateForm } from "~/utils";
+import { badRequest, validateForm } from "~/utils";
 
 const ExpenseSchema = z.object({
   title: z.string().min(5, "The title must be at least 5 character"),
@@ -25,7 +25,6 @@ type ActionData = {
   errors?: ExpenseFieldsError;
 };
 
-const badRequest = (data: ActionData) => json(data, { status: 400 });
 
 export async function action({ request }: ActionArgs) {
   const { errors, fields } = await validateForm(request, ExpenseSchema);

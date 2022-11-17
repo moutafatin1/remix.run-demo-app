@@ -32,7 +32,7 @@ export const InputField = ({
       <input
         name={name}
         className={fn(
-          "w-full rounded-md border border-gray-300 py-2 px-2  text-gray-800 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500",
+          "w-full rounded-md border border-gray-300 py-2 px-2  text-gray-800 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500",
           startIcon && "pl-10",
           endIcon && "pr-10",
           errorMessage &&

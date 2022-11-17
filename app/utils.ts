@@ -1,7 +1,10 @@
+import { json } from "@remix-run/node";
 import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import type { z } from "zod";
+
+export const badRequest = <T>(data: T) => json(data, { status: 400 });
 
 export const validateForm = async <T>(
   request: Request,

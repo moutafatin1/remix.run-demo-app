@@ -36,7 +36,7 @@ const Button = ({
   return (
     <button
       className={fn(
-        "flex items-center rounded-md font-medium transition-all hover:opacity-80",
+        "flex items-center justify-center rounded-md  font-medium transition-all hover:opacity-80 active:scale-90",
         sizes[size],
         variants[variant],
         className
