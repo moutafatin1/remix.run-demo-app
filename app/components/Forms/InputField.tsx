@@ -17,13 +17,14 @@ export const InputField = ({
   errorMessage,
   className,
   name,
+  required,
   ...props
 }: InputFieldProps) => {
   return (
     <label className="space-y-1">
       {label && (
         <span className="text-sm font-medium capitalize text-gray-700">
-          {label}
+          {label} {required && "*"}
         </span>
       )}
       <div className="relative rounded-md shadow-sm">
@@ -44,6 +45,7 @@ export const InputField = ({
           )}
           aria-invalid={errorMessage ? true : undefined}
           aria-describedby={`${name}-error`}
+          required={required}
           {...props}
         />
         {endIcon && !errorMessage && (
