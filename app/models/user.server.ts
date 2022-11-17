@@ -27,3 +27,17 @@ export function getUserById(id: User["id"]) {
     },
   });
 }
+
+export async function verifyLogin(username: string, password: string) {
+  const user = await getUserByUsername(username);
+
+  if (!user) return null;
+
+  const isValid = await argon2.verify(user.hashedPassword, password);
+
+  if (!isValid) return null;
+
+  const { hashedPassword, ...userWithoutPassword } = user;
+
+  return userWithoutPassword;
+}
