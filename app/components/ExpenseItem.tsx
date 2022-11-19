@@ -1,4 +1,4 @@
-import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import Button from "./Elements/Button/Button";
 
 type ExpenseItemProps = {
   title: string;
@@ -7,18 +7,14 @@ type ExpenseItemProps = {
 
 export const ExpenseItem = ({ amount, title }: ExpenseItemProps) => {
   return (
-    <li className="flex w-full items-center justify-between rounded-xl bg-gray-500 p-4">
+    <li className="flex w-full items-center justify-between rounded-xl border-2 border-purple-500 p-4">
       <span className="flex flex-col text-white">
-        <span className="text-2xl font-bold ">{title}</span>
-        <span className="font-semibold">${amount}</span>
+        <span className="text-3xl font-bold text-gray-700">{title}</span>
+        <span className="text-lg font-semibold text-gray-600">${amount}</span>
       </span>
-      <span className="flex items-center gap-4">
-        <button>
-          <AiFillDelete className="text-2xl text-red-600" />
-        </button>
-        <button>
-          <AiFillEdit className="text-2xl text-teal-500" />
-        </button>
+      <span className="flex flex-col items-center gap-2">
+        <Button className="w-24 bg-red-400">Delete</Button>
+        <Button className="w-24 bg-teal-400">Edit</Button>
       </span>
     </li>
   );

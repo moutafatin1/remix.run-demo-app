@@ -8,7 +8,6 @@ import { requireUserId } from "~/session.server";
 export async function loader({ request }: LoaderArgs) {
   const userId = await requireUserId(request);
   const expenses = await getExpenses(userId);
-  console.log("🚀 ~ file: index.tsx ~ line 11 ~ loader ~ expenses", expenses);
 
   return json(expenses);
 }
