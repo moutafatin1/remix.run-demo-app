@@ -1,10 +1,14 @@
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { ExpenseItem } from "~/components";
 import { getExpenses } from "~/models/expense.server";
+import { requireUserId } from "~/session.server";
 
-export async function loader() {
-  const expenses = await getExpenses();
+export async function loader({ request }: LoaderArgs) {
+  const userId = await requireUserId(request);
+  const expenses = await getExpenses(userId);
+  console.log("🚀 ~ file: index.tsx ~ line 11 ~ loader ~ expenses", expenses);
 
   return json(expenses);
 }

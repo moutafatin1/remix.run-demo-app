@@ -1,5 +1,5 @@
 import type { ActionArgs } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 import {
   Form,
   useActionData,
@@ -10,6 +10,7 @@ import { z } from "zod";
 import Button from "~/components/Elements/Button/Button";
 import { InputField } from "~/components/Forms";
 import { addNewExpense } from "~/models/expense.server";
+import { requireUserId } from "~/session.server";
 import { badRequest, validateForm } from "~/utils";
 
 const ExpenseSchema = z.object({
@@ -25,8 +26,8 @@ type ActionData = {
   errors?: ExpenseFieldsError;
 };
 
-
 export async function action({ request }: ActionArgs) {
+  const userId = await requireUserId(request);
   const { errors, fields } = await validateForm(request, ExpenseSchema);
 
   if (errors) {
@@ -39,6 +40,7 @@ export async function action({ request }: ActionArgs) {
   await addNewExpense({
     title: fields.title,
     amount: parseFloat(fields.amount),
+    id: userId,
   });
 
   await new Promise((res) => setTimeout(res, 2000));

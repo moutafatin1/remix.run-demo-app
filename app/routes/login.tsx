@@ -87,7 +87,7 @@ const LoginPage = () => {
           required
         />
         <Button isLoading={isSubmitting} className="rounded-full">
-          Register
+          Login
         </Button>
       </Form>
     </main>
