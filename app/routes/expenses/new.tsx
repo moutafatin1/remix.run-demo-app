@@ -43,7 +43,6 @@ export async function action({ request }: ActionArgs) {
     id: userId,
   });
 
-  await new Promise((res) => setTimeout(res, 2000));
 
   return redirect("/expenses");
 }

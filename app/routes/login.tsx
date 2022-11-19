@@ -1,4 +1,5 @@
-import type { ActionArgs } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
 import {
   Form,
   useActionData,
@@ -9,7 +10,7 @@ import { z } from "zod";
 import Button from "~/components/Elements/Button/Button";
 import { InputField } from "~/components/Forms";
 import { verifyLogin } from "~/models/user.server";
-import { createUserSession } from "~/session.server";
+import { createUserSession, getUserId } from "~/session.server";
 import { badRequest, validateForm } from "~/utils";
 
 const loginSchema = z.object({
@@ -53,6 +54,12 @@ export async function action({ request }: ActionArgs) {
     redirectTo: "/expenses",
     userId: user.id,
   });
+}
+
+export async function loader({ request }: LoaderArgs) {
+  const userId = await getUserId(request);
+  if (userId) return redirect("/");
+  return json({});
 }
 
 const LoginPage = () => {
