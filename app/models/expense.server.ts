@@ -27,3 +27,11 @@ export function addNewExpense({
     },
   });
 }
+
+export function deleteExpense(id: Expense["id"]) {
+  return prisma.expense.delete({
+    where: {
+      id,
+    },
+  });
+}

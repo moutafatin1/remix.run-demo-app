@@ -9,7 +9,7 @@ async function seed() {
 
   const user = await prisma.user.create({
     data: {
-      username: "test1234",
+      username: "test4444",
       hashedPassword,
     },
   });

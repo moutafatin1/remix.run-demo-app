@@ -8,12 +8,12 @@ import { requireUserId } from "~/session.server";
 export async function loader({ request }: LoaderArgs) {
   const userId = await requireUserId(request);
   const expenses = await getExpenses(userId);
-
   return json(expenses);
 }
 
 const ExpensesChildPage = () => {
   const expenses = useLoaderData<typeof loader>();
+
   return (
     <ul className="mx-auto w-full max-w-2xl space-y-4">
       {expenses.map((expenseItem) => (
@@ -21,6 +21,7 @@ const ExpensesChildPage = () => {
           key={expenseItem.id}
           title={expenseItem.title}
           amount={expenseItem.amount}
+          id={expenseItem.id}
         />
       ))}
     </ul>
