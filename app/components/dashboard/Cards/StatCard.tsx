@@ -10,7 +10,7 @@ type StatCardProps = {
 
 export const StatCard = ({ amount, type }: StatCardProps) => {
   return (
-    <div className="flex w-72 flex-col gap-2 rounded-md bg-white p-6 shadow-md">
+    <div className="flex w-72 flex-1 flex-col gap-2 rounded-md bg-white p-6 shadow-md">
       <div className="flex items-center gap-8">
         <div className="flex flex-col">
           <span className="text-2xl font-medium text-gray-600">
