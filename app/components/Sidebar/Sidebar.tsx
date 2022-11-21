@@ -8,9 +8,13 @@ import { sidebarNavigation } from "./navigationData";
 
 type SidebarProps = {
   isOpen: boolean;
+  user: {
+    id: string;
+    username: string;
+  };
   closeSidebar: () => void;
 };
-export function Sidebar({ isOpen, closeSidebar }: SidebarProps) {
+export function Sidebar({ isOpen, closeSidebar, user }: SidebarProps) {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -29,7 +33,7 @@ export function Sidebar({ isOpen, closeSidebar }: SidebarProps) {
             >
               <Sidebar.Header />
               <Sidebar.Nav />
-              <Sidebar.Footer />
+              <Sidebar.Footer user={user} />
             </Dialog.Panel>
           </TransitionOpacity>
         </Dialog>
@@ -39,7 +43,7 @@ export function Sidebar({ isOpen, closeSidebar }: SidebarProps) {
       <div className="inset-y-0 hidden  flex-1  flex-col bg-gray-800 pt-5 md:fixed  md:flex md:w-72">
         <Sidebar.Header />
         <Sidebar.Nav />
-        <Sidebar.Footer />
+        <Sidebar.Footer user={user} />
       </div>
     </>
   );
@@ -93,7 +97,14 @@ Sidebar.NavItem = function NavItem({ children, href, icon }: NavItemProps) {
   );
 };
 
-Sidebar.Footer = function footer() {
+Sidebar.Footer = function footer({
+  user,
+}: {
+  user: {
+    id: string;
+    username: string;
+  };
+}) {
   return (
     <div className="flex items-center gap-2 bg-gray-700 p-4">
       <img
@@ -102,7 +113,7 @@ Sidebar.Footer = function footer() {
         alt="avatar"
       />
       <div className="flex flex-col">
-        <span className="font-medium text-white">Oussama Moutafatin</span>
+        <span className="font-medium text-white">{user.username}</span>
         <span className="text-gray-300">View Profile</span>
       </div>
     </div>

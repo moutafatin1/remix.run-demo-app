@@ -25,6 +25,10 @@ export function getUserById(id: User["id"]) {
     where: {
       id,
     },
+    select: {
+      id: true,
+      username: true,
+    },
   });
 }
 

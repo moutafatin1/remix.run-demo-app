@@ -56,7 +56,7 @@ export async function action({ request }: ActionArgs) {
   return createUserSession({
     request,
     userId: user.id,
-    redirectTo: "/expenses",
+    redirectTo: "/dashboard",
   });
 }
 
