@@ -10,22 +10,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Expense {
-  id        String   @id @default(uuid())
-  title     String
-  amount    Decimal
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model User {
   id             String @id @default(uuid())
   username       String @unique
   hashedPassword String
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  Expense   Expense[]
+  category    Category[]
+  transaction Transaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id    String @id @default(uuid())
+  name  String
+  emoji String
+
+  userId String?
+  User   User?   @relation(fields: [userId], references: [id])
+
+  Transaction Transaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Transaction {
+  id     String @id @default(uuid())
+  amount Float
+  type   String
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  userId String?
+  User   User?   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
