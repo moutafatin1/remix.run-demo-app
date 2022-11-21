@@ -12,6 +12,7 @@
     "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.4",
     "@prisma/client": "^4.6.1",
     "@remix-run/node": "^1.7.5",
     "@remix-run/react": "^1.7.5",
