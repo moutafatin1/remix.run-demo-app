@@ -16,7 +16,7 @@ const DashboardChildRoute = () => {
   const { userStats } = useLoaderData<typeof loader>();
 
   return (
-    <div className="h-screen py-6 px-4">
+    <div className="py-6 px-4">
       <div className="flex flex-wrap items-center justify-center gap-8">
         <StatCard type="income" amount={487.54} />
         <StatCard type="expense" amount={124.54} />
@@ -26,7 +26,7 @@ const DashboardChildRoute = () => {
         <div className="h-96 w-full rounded-md  bg-white shadow-md lg:w-1/2">
           <CategoryPie />
         </div>
-        <div className="h-96 w-full min-w-0  rounded-md  bg-white shadow-md  ">
+        <div className="h-96 w-full min-w-0  rounded-md  bg-white shadow-md ">
           <ExpensesLineChart />
         </div>
       </div>
