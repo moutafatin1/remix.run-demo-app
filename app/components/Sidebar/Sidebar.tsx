@@ -11,7 +11,6 @@ type SidebarProps = {
   closeSidebar: () => void;
 };
 export function Sidebar({ isOpen, closeSidebar }: SidebarProps) {
-
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -28,46 +27,43 @@ export function Sidebar({ isOpen, closeSidebar }: SidebarProps) {
               as="aside"
               className="relative flex w-full max-w-xs flex-1 flex-col  bg-gray-800 pt-5"
             >
-              {/* Logo */}
-              <div className="px-4">
-                <h1 className="text-3xl font-bold text-white">Expense App</h1>
-              </div>
-
-              {/* Nav */}
-              <div className="mt-5 h-0 flex-1 overflow-y-auto">
-                <Sidebar.Nav />
-              </div>
+              <Sidebar.Header />
+              <Sidebar.Nav />
               <Sidebar.Footer />
             </Dialog.Panel>
           </TransitionOpacity>
         </Dialog>
       </Transition>
+
       {/* Static sidebar */}
       <div className="inset-y-0 hidden  flex-1  flex-col bg-gray-800 pt-5 md:fixed  md:flex md:w-72">
-        {/* Logo */}
-        <div className="px-4">
-          <h1 className="text-3xl font-bold text-white">Expense App</h1>
-        </div>
-
-        {/* Nav */}
-        <div className="mt-5 h-0 flex-1 overflow-y-auto">
-          <Sidebar.Nav />
-        </div>
+        <Sidebar.Header />
+        <Sidebar.Nav />
         <Sidebar.Footer />
       </div>
     </>
   );
 }
 
+Sidebar.Header = function Header() {
+  return (
+    <div className="px-4">
+      <h1 className="text-3xl font-bold text-white">Expense App</h1>
+    </div>
+  );
+};
+
 Sidebar.Nav = function Nav() {
   return (
-    <nav className="mt-5 space-y-2 px-2">
-      {sidebarNavigation.map((item) => (
-        <Sidebar.NavItem key={item.name} icon={item.icon} href={item.href}>
-          {item.name}
-        </Sidebar.NavItem>
-      ))}
-    </nav>
+    <div className="mt-5 h-0 flex-1 overflow-y-auto">
+      <nav className="mt-5 space-y-2 px-2">
+        {sidebarNavigation.map((item) => (
+          <Sidebar.NavItem key={item.name} icon={item.icon} href={item.href}>
+            {item.name}
+          </Sidebar.NavItem>
+        ))}
+      </nav>
+    </div>
   );
 };
 
@@ -79,21 +75,6 @@ type NavItemProps = {
 
 Sidebar.NavItem = function NavItem({ children, href, icon }: NavItemProps) {
   return (
-    // <a
-    //   href="#"
-    //   className={twMerge(
-    //     clsx(
-    //       "group flex items-center  rounded-md p-2 font-medium text-gray-300",
-    //       isActive && "bg-gray-900 text-white",
-    //       !isActive && "transition-colors hover:bg-gray-700 hover:text-gray-100"
-    //     )
-    //   )}
-    // >
-    //   <span className={clsx(isActive && "text-gray-300", "mr-4 text-xl")}>
-    //     {icon}
-    //   </span>
-    //   <span>{children}</span>
-    // </a>
     <NavLink
       end
       to={href}
